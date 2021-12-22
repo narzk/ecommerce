@@ -42,7 +42,7 @@ const AddToBasketButton = styled.button`
   border: 1px solid #fc6f11;
   font-size: 20px;
   color: white;
-  padding: 20px 100px;
+  padding: 10px 40px;
   border-radius: 10px;
   background-color: #fc6f11;
   cursor: pointer;

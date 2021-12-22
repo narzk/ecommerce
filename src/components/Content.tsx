@@ -12,28 +12,28 @@ const ContentContainer = styled.div`
 `;
 const Title = styled.div`
   color: #fc6f11;
-  font-size: 20px;
+  font-size: 14px;
   font-weight: bold;
 `;
 const ContentTitle = styled.div`
   color: #1d1a1a;
-  font-size: 72px;
+  font-size: 42px;
   font-weight: bold;
 `;
 const Discription = styled.div`
-  font-size: 24px;
+  font-size: 18px;
   font-weight: normal;
   color: #888585;
   width: 80%;
 `;
 const Price = styled.div`
   color: #1d1a1a;
-  font-size: 40px;
+  font-size: 30px;
   font-weight: bold;
   margin-right: 30px;
 `;
 const Discount = styled.div`
-  font-size: 24px;
+  font-size: 20px;
   font-weight: bold;
   color: #888585;
   text-decoration-line: line-through;
