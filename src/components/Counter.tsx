@@ -1,5 +1,8 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
+import { RootState } from "../app/store";
+import { decrement, increment } from "../feature/counterSlice";
 import Minus from "./IconComponents/Minus";
 import Plus from "./IconComponents/Plus";
 
@@ -20,11 +23,18 @@ const Wrapper = styled.div`
 `;
 
 const Counter: React.FC = () => {
+  const count = useSelector((state: RootState) => state.counter.value);
+  const dispatch = useDispatch();
   return (
     <Wrapper>
-      <Minus />
-      <span>0</span>
-      <Plus />
+      <div onClick={() => dispatch(increment())}>
+        <Plus />
+      </div>
+      <span>{count}</span>
+
+      <div onClick={() => dispatch(decrement())}>
+        <Minus />
+      </div>
     </Wrapper>
   );
 };

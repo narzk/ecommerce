@@ -1,17 +1,21 @@
 import React, { ReactElement } from "react";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
+import { addToBasket } from "../feature/counterSlice";
+
 import Content from "../components/Content";
 import Counter from "../components/Counter";
 import LayOut from "../components/LayOut";
 import Nav from "../components/Nav";
 import Slider from "../components/Slider";
+import Button from "../components/Button";
 
 const Header = styled.div`
   border-bottom: 3px solid #ccc;
   height: 100px;
-  display: flex;
+  /* display: flex;
   align-items: center;
-  box-sizing: border-box;
+  box-sizing: border-box; */
 `;
 const BodyContainer = styled.div`
   background-color: white;
@@ -38,21 +42,14 @@ const ButtonContainer = styled.div`
   width: 80%;
   justify-content: space-between;
 `;
-const AddToBasketButton = styled.button`
-  border: 1px solid #fc6f11;
-  font-size: 20px;
-  color: white;
-  padding: 10px 40px;
-  border-radius: 10px;
-  background-color: #fc6f11;
-  cursor: pointer;
-`;
 
 interface ILayOutProps {
   childern?: ReactElement;
 }
 const DetailsPage: React.FC<ILayOutProps> = () => {
   const naItems = ["Collections", "Men", "Women", "About", "Contanct"];
+  const dispatch = useDispatch();
+
   return (
     <LayOut>
       <Header>
@@ -66,7 +63,9 @@ const DetailsPage: React.FC<ILayOutProps> = () => {
           <Content />
           <ButtonContainer>
             <Counter />
-            <AddToBasketButton>Add to Basket</AddToBasketButton>
+            <Button onClick={() => dispatch(addToBasket())}>
+              Add to Basket
+            </Button>
           </ButtonContainer>
         </ContentContainer>
       </BodyContainer>
