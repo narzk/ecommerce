@@ -1,13 +1,16 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import imageTwo from "../assets/image-product-1.jpg";
 
 export interface CounterState {
   value: number;
   basket: number;
+  image: string;
 }
 
 const initialState: CounterState = {
   value: 0,
   basket: 0,
+  image: imageTwo,
 };
 
 export const counterSlice = createSlice({
@@ -26,10 +29,18 @@ export const counterSlice = createSlice({
     addToBasket: (state) => {
       state.basket = state.value;
     },
+    setImage: (state, action: PayloadAction<string>) => {
+      state.image = action.payload;
+    },
   },
 });
 
-export const { increment, decrement, incrementByAmount, addToBasket } =
-  counterSlice.actions;
+export const {
+  increment,
+  decrement,
+  incrementByAmount,
+  addToBasket,
+  setImage,
+} = counterSlice.actions;
 
 export default counterSlice.reducer;

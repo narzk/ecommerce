@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { addToBasket } from "../feature/counterSlice";
@@ -9,6 +9,7 @@ import LayOut from "../components/LayOut";
 import Nav from "../components/Nav";
 import Slider from "../components/Slider";
 import Button from "../components/Button";
+import Dialog, { useDialog } from "../components/Dialog";
 
 const Header = styled.div`
   border-bottom: 3px solid #ccc;
@@ -49,15 +50,23 @@ interface ILayOutProps {
 const DetailsPage: React.FC<ILayOutProps> = () => {
   const naItems = ["Collections", "Men", "Women", "About", "Contanct"];
   const dispatch = useDispatch();
-
+  const { open, toggle } = useDialog();
+  useEffect(() => {
+    console.log("openopen", open);
+  }, [open]);
   return (
     <LayOut>
+      {open && (
+        <Dialog handleClose={toggle}>
+          <Slider />
+        </Dialog>
+      )}
       <Header>
         <Nav navItems={naItems} title="Sneakers" />
       </Header>
       <BodyContainer>
         <ImageContainer>
-          <Slider />
+          <Slider handleClick={toggle} />
         </ImageContainer>
         <ContentContainer>
           <Content />
