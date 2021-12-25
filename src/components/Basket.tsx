@@ -43,7 +43,6 @@ const ButtonContainer = styled.div`
 `;
 const Basket: React.FC = () => {
   const totalBasket = useSelector((state: RootState) => state.counter.basket);
-  const dispatch = useDispatch();
 
   return (
     <BasketContainer>

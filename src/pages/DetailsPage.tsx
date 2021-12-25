@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect } from "react";
+import React, { ReactElement } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { addToBasket } from "../feature/counterSlice";
@@ -51,9 +51,7 @@ const DetailsPage: React.FC<ILayOutProps> = () => {
   const naItems = ["Collections", "Men", "Women", "About", "Contanct"];
   const dispatch = useDispatch();
   const { open, toggle } = useDialog();
-  useEffect(() => {
-    console.log("openopen", open);
-  }, [open]);
+
   return (
     <LayOut>
       {open && (

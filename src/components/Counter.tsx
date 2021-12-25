@@ -21,20 +21,24 @@ const Wrapper = styled.div`
     font-size: 25px;
   }
 `;
+const PlusMinusButton = styled.div`
+  display: flex;
+  align-items: center;
+`;
 
 const Counter: React.FC = () => {
   const count = useSelector((state: RootState) => state.counter.value);
   const dispatch = useDispatch();
   return (
     <Wrapper>
-      <div onClick={() => dispatch(increment())}>
+      <PlusMinusButton onClick={() => dispatch(increment())}>
         <Plus />
-      </div>
+      </PlusMinusButton>
       <span>{count}</span>
 
-      <div onClick={() => dispatch(decrement())}>
+      <PlusMinusButton onClick={() => dispatch(decrement())}>
         <Minus />
-      </div>
+      </PlusMinusButton>
     </Wrapper>
   );
 };

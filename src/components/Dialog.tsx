@@ -17,6 +17,7 @@ const Container = styled.div`
   height: 40%;
   top: 20vh;
   left: 400px;
+  z-index: 10000000;
 `;
 const Header = styled.div`
   position: absolute;
@@ -29,7 +30,7 @@ interface IDialog {
 }
 const Dialog: React.FC<IDialog> = ({ children, handleClose }) => {
   return (
-    <Wrapper>
+    <>
       <Container>
         <Header onClick={handleClose}>
           <Close />
@@ -37,7 +38,8 @@ const Dialog: React.FC<IDialog> = ({ children, handleClose }) => {
 
         {children}
       </Container>
-    </Wrapper>
+      <Wrapper onClick={handleClose}></Wrapper>
+    </>
   );
 };
 export default Dialog;
