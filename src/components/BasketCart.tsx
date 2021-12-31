@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { RootState } from "../app/store";
 import imageOne from "../assets/image-product-4.jpg";
+import Delete from "./IconComponents/Delete";
+import { deleteBasket } from "../feature/counterSlice";
 
 const CardContainer = styled.div`
   margin-top: 10px;
@@ -10,6 +12,12 @@ const CardContainer = styled.div`
   align-items: center;
   justify-content: space-between;
 `;
+const Section = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: start;
+`;
+const DeleteContainer = styled.div``;
 const Image = styled.img`
   width: 50px;
   height: 50px;
@@ -34,17 +42,27 @@ const BasketCart: React.FC = () => {
   const dispatch = useDispatch();
   return (
     <CardContainer>
-      <Image src={imageOne} />
-      <Content>
-        <Title>Fall Limited Edition Sneakers</Title>
-        <Price>
-          {
-            <>
-              $125.00 X {totalBasket} <b>${totalBasket * 125}.00</b>
-            </>
-          }
-        </Price>
-      </Content>
+      <Section>
+        <Image src={imageOne} />
+        <Content>
+          <Title>Fall Limited Edition Sneakers</Title>
+          <Price>
+            {
+              <>
+                $125.00 X {totalBasket} <b>${totalBasket * 125}.00</b>
+              </>
+            }
+          </Price>
+        </Content>
+      </Section>
+
+      <DeleteContainer
+        onClick={() => {
+          dispatch(deleteBasket());
+        }}
+      >
+        <Delete />
+      </DeleteContainer>
     </CardContainer>
   );
 };

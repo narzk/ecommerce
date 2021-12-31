@@ -10,6 +10,9 @@ const ButtonContainer = styled.button`
   background-color: #fc6f11;
   cursor: pointer;
   width: 250px;
+  @media (max-width: 700px) {
+    width: 100%;
+  }
 `;
 interface IButtonProps {
   children: ReactNode;

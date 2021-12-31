@@ -29,6 +29,9 @@ export const counterSlice = createSlice({
     addToBasket: (state) => {
       state.basket = state.value;
     },
+    deleteBasket: (state) => {
+      state.basket = 0;
+    },
     setImage: (state, action: PayloadAction<string>) => {
       state.image = action.payload;
     },
@@ -41,6 +44,7 @@ export const {
   incrementByAmount,
   addToBasket,
   setImage,
+  deleteBasket,
 } = counterSlice.actions;
 
 export default counterSlice.reducer;

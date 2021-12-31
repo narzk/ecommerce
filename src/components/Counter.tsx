@@ -20,6 +20,9 @@ const Wrapper = styled.div`
     cursor: default;
     font-size: 25px;
   }
+  @media (max-width: 700px) {
+    width: auto;
+  }
 `;
 const PlusMinusButton = styled.div`
   display: flex;

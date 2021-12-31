@@ -6,6 +6,11 @@ const Wrapper = styled.div`
   gap: 10px;
   background-color: white;
   padding: 0px 200px;
+  @media (max-width: 700px) {
+    padding: 0px;
+    grid-template-columns: 1fr;
+    gap: 0px;
+  }
 `;
 
 const LayOut: React.FC = ({ children }) => {

@@ -5,10 +5,15 @@ import DiscountBadge from "./DiscountBadge";
 const ContentContainer = styled.div`
   display: flex;
   flex-direction: column;
-  & > div {
+  @media (max-width: 700px) {
     margin-bottom: 20px;
   }
-  /* border: 1px solid black; */
+  & > div {
+    margin-bottom: 20px;
+    @media (max-width: 700px) {
+      margin-bottom: 15px;
+    }
+  }
 `;
 const Title = styled.div`
   color: #fc6f11;
@@ -19,12 +24,18 @@ const ContentTitle = styled.div`
   color: #1d1a1a;
   font-size: 42px;
   font-weight: bold;
+  @media (max-width: 700px) {
+    font-size: 36px;
+  }
 `;
 const Discription = styled.div`
   font-size: 18px;
   font-weight: normal;
   color: #888585;
   width: 80%;
+  @media (max-width: 700px) {
+    width: 100%;
+  }
 `;
 const Price = styled.div`
   color: #1d1a1a;
@@ -43,14 +54,30 @@ const PriceContainer = styled.div`
   flex-direction: row;
   align-items: center;
 `;
+const Break = styled.br`
+  display: block;
+  @media (max-width: 700px) {
+    display: none;
+  }
+`;
+const DiscountPart = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  @media (max-width: 700px) {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+`;
 
 const Content: React.FC = () => {
   return (
     <ContentContainer>
-      <Title>Sneaker Company</Title>
+      <Title>SNEAKER COMPANY</Title>
       <ContentTitle>
-        Fall Limit
-        <br />
+        Fall Limit &nbsp;
+        <Break />
         Sneakers
       </ContentTitle>
       <Discription>
@@ -58,11 +85,13 @@ const Content: React.FC = () => {
         Featuring a durable rubber outer sole, they'll withstand everything the
         weather can offer.
       </Discription>
-      <PriceContainer>
-        <Price>$ 125.00</Price>
-        <DiscountBadge />
-      </PriceContainer>
-      <Discount>$ 250.00</Discount>
+      <DiscountPart>
+        <PriceContainer>
+          <Price>$ 125.00</Price>
+          <DiscountBadge />
+        </PriceContainer>
+        <Discount>$ 250.00</Discount>
+      </DiscountPart>
     </ContentContainer>
   );
 };

@@ -23,7 +23,6 @@ const Title = styled.div`
 `;
 const CartContainer = styled.div`
   flex: 1;
-  /* margin-left: 100px; */
   direction: rtl;
   cursor: pointer;
 `;
@@ -44,17 +43,40 @@ const Item = styled.div`
   color: #888585;
   cursor: pointer;
   border-bottom: 6px solid transparent;
+  transition: all 0.3s ease-in-out;
 
+  @media (max-width: 700px) {
+    display: none;
+  }
   &:hover {
     border-bottom: 6px solid #fc6f11;
     color: #1d1a1a;
   }
 `;
+const HamburgerMenu = styled.button`
+  flex-direction: column;
+  border: none;
+  background-color: transparent;
+  outline: none;
+  display: none;
+  margin-right: 5px;
+
+  @media (max-width: 700px) {
+    display: flex;
+  }
+`;
+const HamItem = styled.div`
+  width: 20px;
+  height: 3px;
+  background-color: #2c2b2b;
+  margin-top: 5px;
+`;
 interface INavProps {
   navItems: string[];
   title: string;
+  humbergerClick: () => void;
 }
-const Nav: React.FC<INavProps> = ({ navItems, title }) => {
+const Nav: React.FC<INavProps> = ({ navItems, title, humbergerClick }) => {
   const [basket, setBasket] = useState(false);
   const totalBasket = useSelector((state: RootState) => state.counter.basket);
 
@@ -65,6 +87,11 @@ const Nav: React.FC<INavProps> = ({ navItems, title }) => {
   return (
     <NavContainer>
       <Container>
+        <HamburgerMenu onClick={humbergerClick}>
+          <HamItem></HamItem>
+          <HamItem></HamItem>
+          <HamItem></HamItem>
+        </HamburgerMenu>
         <Title>{title}</Title>
         {navItems.map((item) => (
           <Item>{item}</Item>

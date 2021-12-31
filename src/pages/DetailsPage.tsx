@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import React, { ReactElement, useState } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { addToBasket } from "../feature/counterSlice";
@@ -10,61 +10,95 @@ import Nav from "../components/Nav";
 import Slider from "../components/Slider";
 import Button from "../components/Button";
 import Dialog, { useDialog } from "../components/Dialog";
+import SliderMenu from "../components/SliderMenu";
 
 const Header = styled.div`
   border-bottom: 3px solid #ccc;
   height: 100px;
-  /* display: flex;
-  align-items: center;
-  box-sizing: border-box; */
+
+  @media (max-width: 700px) {
+    padding: 0px;
+    display: grid;
+    grid-template-columns: 1fr;
+    height: 60px;
+    padding: 0px 10px;
+  }
 `;
 const BodyContainer = styled.div`
   background-color: white;
-  /* border: 1px solid black; */
   padding: 50px 0px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 10px;
+  @media (max-width: 700px) {
+    grid-template-columns: 1fr;
+    padding: 0px;
+  }
 `;
 const ImageContainer = styled.div`
-  /* border: 1px solid black; */
   display: flex;
   align-items: center;
   align-content: center;
 `;
 const ContentContainer = styled.div`
-  /* border: 1px solid black; */
   display: flex;
   flex-direction: column;
+  @media (max-width: 700px) {
+    padding: 0px 10px;
+  }
 `;
 const ButtonContainer = styled.div`
-  /* border: 1px solid black; */
   display: flex;
   width: 80%;
+  @media (max-width: 700px) {
+    width: 100%;
+    flex-direction: column;
+    > div {
+      margin-bottom: 10px;
+    }
+  }
   justify-content: space-between;
 `;
 
-interface ILayOutProps {
-  childern?: ReactElement;
-}
-const DetailsPage: React.FC<ILayOutProps> = () => {
+const DetailsPage: React.FC = () => {
   const naItems = ["Collections", "Men", "Women", "About", "Contanct"];
   const dispatch = useDispatch();
   const { open, toggle } = useDialog();
+  const [humberger, setHumberger] = useState(false);
+  const [photo, setPhoto] = useState(false);
 
   return (
     <LayOut>
-      {open && (
+      {open && !humberger ? (
         <Dialog handleClose={toggle}>
           <Slider />
         </Dialog>
+      ) : (
+        open &&
+        !photo && (
+          <Dialog handleClose={toggle}>
+            <SliderMenu navItems={naItems} />
+          </Dialog>
+        )
       )}
       <Header>
-        <Nav navItems={naItems} title="Sneakers" />
+        <Nav
+          navItems={naItems}
+          title="Sneakers"
+          humbergerClick={() => {
+            setHumberger(true);
+            toggle();
+          }}
+        />
       </Header>
       <BodyContainer>
         <ImageContainer>
-          <Slider handleClick={toggle} />
+          <Slider
+            handleClick={() => {
+              setPhoto(true);
+              toggle();
+            }}
+          />
         </ImageContainer>
         <ContentContainer>
           <Content />
